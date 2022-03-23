@@ -9,6 +9,7 @@ import json
 
 CONFIG_FILE = Path("config.json")
 rickers_file = Path("rickers.json")
+whitelist_file = Path("whitelist.json")
 
 # load the config
 config = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
@@ -24,7 +25,13 @@ if rickers_file.exists():
 	rickers = json.loads(rickers_file.read_text())
 else:
 	rickers = {}
-	
+
+# load the whitelist
+if whitelist_file.exist():
+	whitelist = json.loads(whitelist_file.read_text(encoding="utf-8"))
+else:
+	whitelist = []
+
 @client.on(events.NewMessage)
 async def handle_new_message(event):
 	user_id = str(event.from_id.user_id)
