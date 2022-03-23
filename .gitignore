@@ -1,7 +1,7 @@
-.vscode
-.env
-printer.session
-rick_roll.txt
+node_modules
+dist
+yarn-error.log
+
 rickers.json
-config.json
 whitelist.json
+rick_roll.txt
