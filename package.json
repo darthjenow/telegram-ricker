@@ -2,7 +2,7 @@
   "name": "telegram-bot",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "DarthJenow <YOUR_EMAIL_ADDRESS>",
+  "author": "DarthJenow <darthjenow@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^17.0.22",
@@ -13,6 +13,7 @@
     "start": "tsc && node dist/app.js"
   },
   "dependencies": {
+    "input": "^1.0.1",
     "telegram": "^2.5.22"
   }
 }

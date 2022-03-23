@@ -1,0 +1,14 @@
+{
+	"account": {
+		"phoneNumber": "your_phone_humber_here",
+		"password": "password"
+	},
+	"api": {
+		"id": 123456789,
+		"hash": "your_api_has_here"
+	},
+	"randomSleepTime": {
+		"min": 5,
+		"max": 30
+	}
+}

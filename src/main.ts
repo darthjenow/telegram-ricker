@@ -3,18 +3,26 @@ import { TelegramClient } from "telegram";
 import { NewMessage, NewMessageEvent } from "telegram/events";
 import { StringSession } from "telegram/sessions";
 
+const input = require("input");
+
 const CONFIG_PATH = "config/config.json";
 const WHITELIST_PATH = "config/whitelist.json";
 const RICKERS_PATH = "config/rickers.json";
 const RICK_ROLL_FILE = "rick_roll.txt";
 
 let config: {
-	"apiId": number,
-	"apiHash": string,
+	"account": {
+		"phoneNumber": string,
+		"password": string
+	},
+	"api": {
+		"id": number,
+		"hash": string,
+	}
 	"randomSleepTime": {
 		"min": number,
 		"max": number,
-	}
+	},
 	"session": string | undefined
 };
 let rickers: Record<string, number> = {};
@@ -43,14 +51,14 @@ if (config.session === undefined) {
 
 const stringSession = new StringSession(config.session);
 
-const client = new TelegramClient(stringSession, config.apiId, config.apiHash, { connectionRetries: 5, autoReconnect: true });
+const client = new TelegramClient(stringSession, config.api.id, config.api.hash, { connectionRetries: 5, autoReconnect: true });
 
 (async () => {
 	await client.start({
-		phoneNumber: "YOUR_PHONE_NUMBER",
-		password: async () => "YOUR_PASSWORD",
+		phoneNumber: config.account.phoneNumber,
+		password: async () => config.account.password,
 		phoneCode: async () =>
-		await input.text("Please enter the code you received: "),
+			await input.text("Please enter the code you received: "),
 		onError: (err) => {
 			console.error(err);
 		}
