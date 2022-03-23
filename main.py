@@ -3,7 +3,6 @@
 from pathlib import Path
 import time
 from telethon import TelegramClient, events
-import os
 import random
 import json
 
@@ -14,15 +13,13 @@ whitelist_file = Path("whitelist.json")
 # load the config
 config = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
 
-session = os.environ.get("TG_SESSION", "printer")
-
-client = TelegramClient(session, config["apiId"], config["apiHash"], proxy=None).start()
+client = TelegramClient("printer", config["apiId"], config["apiHash"], proxy=None).start()
 
 rick_roll = Path("rick_roll.txt").read_text().split("\n")
 
 # load the list of the rickers
 if rickers_file.exists():
-	rickers = json.loads(rickers_file.read_text())
+	rickers = json.loads(rickers_file.read_text(encoding="utf-8"))
 else:
 	rickers = {}
 
