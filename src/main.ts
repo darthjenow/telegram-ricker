@@ -2,7 +2,6 @@ import fs from "fs";
 import { TelegramClient } from "telegram";
 import { NewMessage, NewMessageEvent } from "telegram/events";
 import { StringSession } from "telegram/sessions";
-const input = require("input");
 
 const CONFIG_PATH = "config/config.json";
 const WHITELIST_PATH = "config/whitelist.json";
