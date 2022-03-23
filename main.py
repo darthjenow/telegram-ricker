@@ -21,7 +21,7 @@ rick_roll = Path("rick_roll.txt").read_text().split("\n")
 
 # load the list of the rickers
 if rickers_file.exists():
-	rickers = json.loads(rickers_file.read_text())
+	rickers = json.loads(rickers_file.read_text(encoding="utf-8"))
 else:
 	rickers = {}
 	
