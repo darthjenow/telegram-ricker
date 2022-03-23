@@ -82,6 +82,8 @@ const client = new TelegramClient(stringSession, config.api.id, config.api.hash,
 		const sender = await message.getSender();
 
 		if (sender) {
+			console.log(`new message from sender with id ${sender.id}`);
+
 			if (!whitelist.includes(sender.id.toString())) {
 				if (!Object.keys(rickers).includes(sender.id.toString())) {
 					rickers[sender.id.toString()] = 0;
