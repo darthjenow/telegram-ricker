@@ -93,9 +93,20 @@ const client = new TelegramClient(stringSession, config.api.id, config.api.hash,
 				const random_sleep_time = Math.round(Math.random() * (config.randomSleepTime.max - config.randomSleepTime.min) + config.randomSleepTime.min) * 1000;
 	
 				setTimeout(() => {
+					// set the message to read
+					if (event.chatId !== undefined) {
+						setTimeout(async () => {
+							console.debug("read message");
+
+							await client.markAsRead(event.chatId as bigInt.BigInteger);
+						}, 1000);
+					} else {
+						console.debug(`couldn't read it: ${message.text}`);
+					}
+
 					// send the message
 					client.sendMessage(sender, { message: rick_roll[rickers[sender.id.toString()]] });
-					
+
 					// increase the rick-index
 					rickers[sender.id.toString()]++;
 
