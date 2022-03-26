@@ -51,7 +51,7 @@ if (config.session === undefined) {
 
 const stringSession = new StringSession(config.session);
 
-const client = new TelegramClient(stringSession, config.api.id, config.api.hash, { connectionRetries: 5, autoReconnect: true });
+const client = new TelegramClient(stringSession, config.api.id, config.api.hash, { connectionRetries: 100, autoReconnect: true });
 
 (async () => {
 	await client.start({
