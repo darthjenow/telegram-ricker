@@ -51,7 +51,7 @@ if (config.session === undefined) {
 
 const stringSession = new StringSession(config.session);
 
-const client = new TelegramClient(stringSession, config.api.id, config.api.hash, { connectionRetries: 100, autoReconnect: true });
+const client = new TelegramClient(stringSession, config.api.id, config.api.hash, { connectionRetries: 5, autoReconnect: true });
 
 (async () => {
 	await client.start({
@@ -82,7 +82,7 @@ const client = new TelegramClient(stringSession, config.api.id, config.api.hash,
 		const sender = await message.getSender();
 
 		if (sender) {
-			console.log(`new message from sender with id ${sender.id}`);
+			console.log(`new message from sender ${message._sender.username} (id: ${message._senderId}): "${message.message}"`);
 
 			if (!whitelist.includes(sender.id.toString())) {
 				if (!Object.keys(rickers).includes(sender.id.toString())) {
@@ -125,8 +125,6 @@ const client = new TelegramClient(stringSession, config.api.id, config.api.hash,
 					});
 				}, random_sleep_time);
 			}
-
 		}
-
 	}, new NewMessage({}));
 })();
